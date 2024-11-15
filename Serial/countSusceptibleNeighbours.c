@@ -1,3 +1,5 @@
+#include "vars_defs_functions.h"
+
 
 int countSusceptibleNeighbours(int row, int col, CELL **current) {
     int count = 0;

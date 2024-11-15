@@ -1,3 +1,5 @@
+#include "vars_defs_functions.h"
+
 int countZombieNeighbours(int row, int col, CELL **current) {
     int count = 0;
 

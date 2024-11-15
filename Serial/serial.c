@@ -25,41 +25,45 @@ int main() {
     }
 
     // Simulate for TOTAL_DAYS
-    for (int day = 0; day < TOTAL_DAYS; day++) {
-        unsigned long numS = 0, numZ = 0, numR = 0, numD = 0;
+for (int day = 0; day < TOTAL_DAYS; day++) {
+    unsigned long numS = 0, numZ = 0, numR = 0, numD = 0;
 
-        // Count the cell states (implement your logic here)
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLS; j++) {
-                // Logic for updating counts based on `current[i][j].state`
-                // (This logic is not shown in your code, so add it later.)
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            int zombieCount = countZombieNeighbours(i, j, current);
+            int susceptibleCount = countSusceptibleNeighbours(i, j, current);
+
+            // Update state counters based on the current cell's state
+            switch (current[i][j].state) {
+                case '@': numS++; break;
+                case 'Z': numZ++; break;
+                case 'R': numR++; break;
+                case 'D': numD++; break;
             }
         }
-
-        // Write SZRD data for the day
-        fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
-
-        // Output the current world state (write world grid to a file)
-        outputWorld(day, current);
-
-        // Update current and future arrays for the next day
-        // (This requires your simulation update logic.)
     }
 
-    // Close the SZRD file after the loop
+    // Write SZRD data for this day to the file
+    fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
+
+    // Output the world state for the current day
+    outputWorld(day, current);
+
+    // Update the world for the next day (simulation logic goes here)
+}
+
+
+  
     fclose(fp_daySZRD);
 
-    // Reopen the file to print its contents to the console
+
     fp_daySZRD = fopen("data/daySZRD.dat", "r");
-    if (!fp_daySZRD) {
-        perror("Failed to reopen daySZRD.dat");
-        return 1;
-    }
+
 
     // Print the SZRD data to the console
     char buffer[256];
     while (fgets(buffer, sizeof(buffer), fp_daySZRD)) {
-        printf("%s", buffer); // Print each line to the console
+        printf("%s", buffer);
     }
     fclose(fp_daySZRD);
 
