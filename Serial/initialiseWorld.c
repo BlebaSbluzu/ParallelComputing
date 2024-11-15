@@ -1,7 +1,8 @@
+
 void initialiseWorld(){
 
-  currentWorld[10][10];
+  currentWorld[ROWS][COLS];
 
-  futureWorld[10][10];
+  futureWorld[ROWS][COLS];
 
 }
