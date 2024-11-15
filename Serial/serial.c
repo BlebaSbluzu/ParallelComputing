@@ -4,7 +4,7 @@
 
 int main() {
     // Declare counters for the initial state
-    unsigned long numS = 0, numZ = 0;
+    unsigned long numS = 0, numZ = 0, numR = 0, numD = 0;
 
     // Allocate memory for 2D arrays `current` and `future`
     CELL **current = malloc(ROWS * sizeof(CELL *));
@@ -27,7 +27,7 @@ int main() {
     // Simulate for TOTAL_DAYS
     for (int day = 0; day < TOTAL_DAYS; day++) {
         // Reset daily counters
-        unsigned long numS = 0, numZ = 0, numR = 0, numD = 0;
+        numS = numZ = numR = numD = 0;
 
         // Loop through each cell and apply rules
         for (int i = 0; i < ROWS; i++) {
@@ -35,6 +35,7 @@ int main() {
                 int zombieCount = countZombieNeighbours(i, j, current);
                 int susceptibleCount = countSusceptibleNeighbours(i, j, current);
 
+                // Transition states based on current state
                 switch (current[i][j].state) {
                     case 'S': 
                         decide_S_to_ZorR(i, j, zombieCount, &numS, &numZ, &numR, current, future); 
@@ -61,7 +62,7 @@ int main() {
         // Update the world for the next day
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                current[i][j] = future[i][j];
+                current[i][j] = future[i][j];  // Copy future state to current for the next iteration
             }
         }
     }
