@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() { // Specify the return type as int
+int main() { 
     unsigned long numS = 0, numZ = 0;
 
     CELL **current = malloc(ROWS * sizeof(CELL *));
@@ -14,7 +14,7 @@ int main() { // Specify the return type as int
 
     initialiseWorld(current, future, &numS, &numZ);
 
-    // Free allocated memory to avoid memory leaks
+
     for (int i = 0; i < ROWS; i++) {
         free(current[i]);
         free(future[i]);
@@ -22,5 +22,5 @@ int main() { // Specify the return type as int
     free(current);
     free(future);
 
-    return 0; // Add return statement
+    return 0; 
 }
