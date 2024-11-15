@@ -4,6 +4,8 @@
 // Probabilities must be between 0.0 and 1.0 inclusive
 //
 
+#include <stdio.h>
+
 #ifndef VARS_AND_DEFS
 #define VARS_AND_DEFS
 

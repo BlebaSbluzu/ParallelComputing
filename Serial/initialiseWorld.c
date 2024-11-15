@@ -1,3 +1,6 @@
+#include "vars_defs_functions.h" 
+#include <stdlib.h>
+#include <time.h>
 
 void initialiseWorld(CELL **current, CELL **future,
                      unsigned long *ptr_to_numS, unsigned long *ptr_to_numZ){
@@ -42,4 +45,4 @@ void initialiseWorld(CELL **current, CELL **future,
     }
 }
      
-}
+
