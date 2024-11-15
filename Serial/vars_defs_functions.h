@@ -17,62 +17,42 @@
 
 #define WORLD_OUTPUT_INTERVAL 1
 
-//Susceptible to Zombie Parameters for Basic Model
-#define PROB_S_TO_Z_1 0.90
-#define PROB_S_TO_Z_2 0.91
-#define PROB_S_TO_Z_3 0.92
-#define PROB_S_TO_Z_4 0.93
-#define PROB_S_TO_Z_5 0.94
-#define PROB_S_TO_Z_6 0.95
-#define PROB_S_TO_Z_7 0.96
-#define PROB_S_TO_Z_8 0.97
+// Susceptible to Zombie Parameters
+#define BASE_PROB_S_TO_Z 0.30  // 30% chance with 1 zombie
+#define EXTRA_PROB_S_TO_Z_PER_ZOMBIE 0.10 // +10% for each additional zombie
 
-//Susceptible to Removed (Dead) Parameters: Probability of death by
-//natural causes: S -> D
-#define PROB_S_TO_D 0.01
+// Zombie to Dead (Killed by Susceptible/Infected)
+#define MIN_NUM_S_TO_KILL_Z 3
+#define BASE_PROB_Z_TO_D 0.50 // 50% chance with 3 susceptibles/infecteds
+#define EXTRA_PROB_Z_TO_D_PER_EXTRA_S 0.10 // +10% for each extra susceptible/infected
 
-//Death: Time for dead cell to become empty
+// Natural Deaths (Susceptibles/Infecteds/Removed)
+#define DAILY_DEATHS_PER_1000 6.7
+
+// Birth Rate
+#define BASE_PROB_NEW_S 0.35 // Birth rate multiplier based on current population
+
+// Infected to Zombie Transition
+#define INFECTED_TO_ZOMBIE_DAYS 2
+
+// Death: Time for dead cell to become empty
 #define TIME_D_TO_EMPTY 3
 
-//Minimum number of Susceptibles needed to defeat a Zombie and
-//probability of that happening if we have that minimum number of S
-#define NUM_S_TO_DEFEAT_Z 6
-#define PROB_Z_TO_D 0.1
-
-//Birth
-#define PROB_NEW_S 0.01
-
-//Removed (Undead) to Zombie Parameters (after S is savaged by Zombies)
-#define MIN_NUM_ZOMBIE_TO_SAVAGE_S 6
+// Removed to Zombie Parameters (Min and Max Days)
 #define MIN_TIME_R_TO_Z 1
 #define MAX_TIME_R_TO_Z 3
 
-
-
-// ****** FOR THE LATENT INFECTION MODEL ****** //
-
-//Infected to Zombie Parameters: Each cell will have an initial time (as random
-//number between Min and Max) before: I->Z 
-#define MIN_TIME_I_TO_Z 1
-#define MAX_TIME_I_TO_Z 5
-
-//Infected to Removed (Dead) Parameters: Probability of death by natural causes: I -> R(D)
-#define PROB_I_TO_R 0.01
-
-
-//Cell Type-definition
+// Cell Type-definition
 typedef struct cell {
-  char state;
-  int counter_I_to_Z;
-  int counter_R_to_Z;
-  int counter_D_to_Empty;
-  int age;
-  char stateChange;
+    char state;              // Current state ('S', 'Z', 'I', 'R', 'D', etc.)
+    int counter_I_to_Z;      // Days as infected to become a zombie
+    int counter_R_to_Z;      // Days as removed before turning zombie
+    int counter_D_to_Empty;  // Days as dead before becoming empty
+    int age;                 // Age of the cell (for potential extensions)
+    char stateChange;        // Indicator of the last state transition
 } CELL;
 
-
-//Function Prototypes
-
+// Function Prototypes
 void initialiseWorld(CELL **current,
 		     CELL **future,
 		     unsigned long *ptr_to_numS,

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() { 
+int main() {
     // Declare counters for the initial state
     unsigned long numS = 0, numZ = 0;
 
@@ -25,40 +25,56 @@ int main() {
     }
 
     // Simulate for TOTAL_DAYS
-for (int day = 0; day < TOTAL_DAYS; day++) {
-    unsigned long numS = 0, numZ = 0, numR = 0, numD = 0;
+    for (int day = 0; day < TOTAL_DAYS; day++) {
+        // Reset daily counters
+        unsigned long numS = 0, numZ = 0, numR = 0, numD = 0;
 
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            int zombieCount = countZombieNeighbours(i, j, current);
-            int susceptibleCount = countSusceptibleNeighbours(i, j, current);
+        // Loop through each cell and apply rules
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                int zombieCount = countZombieNeighbours(i, j, current);
+                int susceptibleCount = countSusceptibleNeighbours(i, j, current);
 
-            // Update state counters based on the current cell's state
-            switch (current[i][j].state) {
-                case '@': numS++; break;
-                case 'Z': numZ++; break;
-                case 'R': numR++; break;
-                case 'D': numD++; break;
+                switch (current[i][j].state) {
+                    case 'S': 
+                        decide_S_to_ZorR(i, j, zombieCount, &numS, &numZ, &numR, current, future); 
+                        break;
+                    case 'Z': 
+                        decide_Z_to_D(i, j, susceptibleCount, &numZ, &numD, current, future); 
+                        break;
+                    case 'R': 
+                        decide_R_to_Z(i, j, &numR, &numZ, current, future); 
+                        break;
+                    case 'D': 
+                        decide_D_to_Empty(i, j, &numD, current, future); 
+                        break;
+                }
+            }
+        }
+
+        // Write SZRD data for this day to the file
+        fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
+
+        // Output the world state for the current day
+        outputWorld(day, current);
+
+        // Update the world for the next day
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                current[i][j] = future[i][j];
             }
         }
     }
 
-    // Write SZRD data for this day to the file
-    fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
-
-    // Output the world state for the current day
-    outputWorld(day, current);
-
-    // Update the world for the next day (simulation logic goes here)
-}
-
-
-  
+    // Close the file after simulation
     fclose(fp_daySZRD);
 
-
+    // Re-open the file to print its contents
     fp_daySZRD = fopen("data/daySZRD.dat", "r");
-
+    if (!fp_daySZRD) {
+        perror("Failed to reopen daySZRD.dat");
+        return 1;
+    }
 
     // Print the SZRD data to the console
     char buffer[256];
