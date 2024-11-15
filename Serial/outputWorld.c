@@ -12,6 +12,8 @@ void outputWorld(int gen, CELL **current){
   snprintf(worldfilenamebuf, sizeof(worldfilenamebuf), "data/world%d.dat", gen);
   FILE *fp_world = fopen(worldfilenamebuf, "w");
 
+  
+  
   for(i=0; i<ROWS; i++){ 
     for(j=0; j<COLS; j++){
 

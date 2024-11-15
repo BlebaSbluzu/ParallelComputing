@@ -2,21 +2,25 @@
 #include <stdlib.h>
 
 void decide_S_to_ZorR(int row, int col, int num_Zombie_Neighbours, unsigned long *ptr_to_numS,
-                      unsigned long *ptr_to_numZ, unsigned long *ptr_to_numR,
-                      CELL **current, CELL **future) {
+                       unsigned long *ptr_to_numZ, unsigned long *ptr_to_numR,
+                       CELL **current, CELL **future) {
     
-   if (current[row][col].state == 'I') {  // Infected
-    current[row][col].counter_I_to_Z++;  // Increment the infection counter
-    if (current[row][col].counter_I_to_Z >= INFECTED_TO_ZOMBIE_DAYS) {
-        current[row][col].state = 'Z';  // Transition to Zombie
-        (*ptr_to_numZ)++;               // Increase Zombie count
-        (*ptr_to_numS)--;               // Decrease Susceptible count
-        printf("Cell (%d, %d) turned into a Zombie!\n", row, col); // Debug
-        current[row][col].counter_I_to_Z = 0;  // Reset the counter after transition
-    }
+    if (current[row][col].state == 'I') {  // Infected
+        current[row][col].counter_I_to_Z++;  // Increment the infection counter
 
-
-    } else if (current[row][col].state == 'S') {  // Susceptible
+        future[row][col].counter_I_to_Z = current[row][col].counter_I_to_Z;  // Ensure future is also updated
+      
+        // Transition to Zombie if the counter exceeds the threshold
+        if (current[row][col].counter_I_to_Z >= INFECTED_TO_ZOMBIE_DAYS) {
+        
+            future[row][col].state = 'Z';  // Transition to Zombie
+            (*ptr_to_numZ)++;               // Increase Zombie count
+            (*ptr_to_numS)--;               // Decrease Susceptible count
+         
+            future[row][col].counter_I_to_Z = 0;  // Reset the counter after transition
+        }
+    } 
+    else if (current[row][col].state == 'S') {  // Susceptible
         // Transition based on surrounding zombies (no randomness)
         if (num_Zombie_Neighbours > 0) {
             // Calculate the probability of infection based on the number of zombie neighbors

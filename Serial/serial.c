@@ -25,7 +25,7 @@ int main() {
     }
 
     // Simulate for TOTAL_DAYS
-    for (int day = 0; day < TOTAL_DAYS; day++) {
+    for (int day = 1; day <= TOTAL_DAYS; day++) {
         // Reset daily counters
         numS = numZ = numR = numD = 0;
 
@@ -39,6 +39,9 @@ int main() {
                 switch (current[i][j].state) {
                     case 'S': 
                         decide_S_to_ZorR(i, j, zombieCount, &numS, &numZ, &numR, current, future); 
+                        break;
+		case 'I':
+         decide_S_to_ZorR(i, j, zombieCount, &numS, &numZ, &numR, current, future); 
                         break;
                     case 'Z': 
                         decide_Z_to_D(i, j, susceptibleCount, &numZ, &numD, current, future); 
@@ -57,6 +60,7 @@ int main() {
         fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
 
         // Output the world state for the current day
+	printf("Day: %d\n",day);
         outputWorld(day, current);
 
         // Update the world for the next day
