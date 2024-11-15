@@ -16,7 +16,7 @@ void initialiseWorld(CELL **current, CELL **future,
 
      for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            // Initialize the current array
+        
             current[i][j].state = 'S';     
             current[i][j].counter_I_to_Z = 0;
             current[i][j].counter_R_to_Z = 0;
@@ -24,6 +24,13 @@ void initialiseWorld(CELL **current, CELL **future,
             current[i][j].age = 0;
             current[i][j].stateChange = ' ';
 
+	    
+	    future[i][j].state = 'S';      
+            future[i][j].counter_I_to_Z = 0;
+            future[i][j].counter_R_to_Z = 0;
+            future[i][j].counter_D_to_Empty = 0;
+            future[i][j].age = 0;
+            future[i][j].stateChange = ' ';
 
 	    
      
