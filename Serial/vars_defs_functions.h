@@ -27,6 +27,7 @@
 #define EXTRA_PROB_Z_TO_D_PER_EXTRA_S 0.10 // +10% for each extra susceptible/infected
 
 // Natural Deaths (Susceptibles/Infecteds/Removed)
+#define PROB_S_TO_D 0.0067 // Death rate adjusted per your specifications
 #define DAILY_DEATHS_PER_1000 6.7
 
 // Birth Rate
