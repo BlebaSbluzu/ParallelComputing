@@ -36,30 +36,26 @@ int main() {
             }
         }
 
-        // Write SZRD data for the day
+       
         fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
 
-        // Output the current world state (write world grid to a file)
+        )
         outputWorld(day, current);
 
-        // Update current and future arrays for the next day
-        // (This requires your simulation update logic.)
+      
     }
 
-    // Close the SZRD file after the loop
+  
     fclose(fp_daySZRD);
 
-    // Reopen the file to print its contents to the console
+
     fp_daySZRD = fopen("data/daySZRD.dat", "r");
-    if (!fp_daySZRD) {
-        perror("Failed to reopen daySZRD.dat");
-        return 1;
-    }
+
 
     // Print the SZRD data to the console
     char buffer[256];
     while (fgets(buffer, sizeof(buffer), fp_daySZRD)) {
-        printf("%s", buffer); // Print each line to the console
+        printf("%s", buffer);
     }
     fclose(fp_daySZRD);
 
