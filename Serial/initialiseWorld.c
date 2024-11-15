@@ -3,19 +3,19 @@ void initialiseWorld(CELL **current, CELL **future,
                      unsigned long *ptr_to_numS, unsigned long *ptr_to_numZ){
 
 
-     int rows = 10, cols = 10;
+    
 
      srand(time(NULL));
 
-     int z_row = rand() % rows;
-     int z_col = rand() % cols;
+     int z_row = rand() % ROWS;
+     int z_col = rand() % COLS;
 
      *ptr_to_numS = 0;
      *ptr_to_numZ = 0;
 
 
-     for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
+     for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
         
             current[i][j].state = 'S';     
             current[i][j].counter_I_to_Z = 0;
@@ -32,6 +32,14 @@ void initialiseWorld(CELL **current, CELL **future,
             future[i][j].age = 0;
             future[i][j].stateChange = ' ';
 
-	    
+	                if (i == z_row && j == z_col) {
+                current[i][j].state = 'Z';
+                (*ptr_to_numZ)++;
+            } else {
+                (*ptr_to_numS)++;
+            }
+        }
+    }
+}
      
 }
