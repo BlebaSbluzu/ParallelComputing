@@ -38,7 +38,8 @@ int main() {
                 // Transition states based on current state
                 switch (current[i][j].state) {
                     case 'S': 
-                        decide_S_to_ZorR(i, j, zombieCount, &numS, &numZ, &numR, current, future); 
+                        decide_S_to_ZorR(i, j, zombieCount, &numS, &numZ, &numR, current, future);
+			numS++;
                         break;
 		case 'I':
          decide_S_to_ZorR(i, j, zombieCount, &numS, &numZ, &numR, current, future); 
@@ -56,11 +57,10 @@ int main() {
             }
         }
 
-        // Write SZRD data for this day to the file
-        fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
+ outputDaySZRD(fp_daySZRD, day, numS, numZ, numR, numD);
 
         // Output the world state for the current day
-	printf("Day: %d\n",day);
+        
         outputWorld(day, current);
 
         // Update the world for the next day
@@ -81,11 +81,6 @@ int main() {
         return 1;
     }
 
-    // Print the SZRD data to the console
-    char buffer[256];
-    while (fgets(buffer, sizeof(buffer), fp_daySZRD)) {
-        printf("%s", buffer);
-    }
     fclose(fp_daySZRD);
 
     // Free the 2D arrays `current` and `future` after simulation ends
@@ -98,6 +93,7 @@ int main() {
 
     return 0;
 }
+
 
     
 

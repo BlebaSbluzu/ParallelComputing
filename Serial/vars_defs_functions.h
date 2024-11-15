@@ -50,7 +50,7 @@ typedef struct cell {
     int counter_R_to_Z;      // Days as removed before turning zombie
     int counter_D_to_Empty;  // Days as dead before becoming empty
     int age;                 // Age of the cell (for potential extensions)
-    char stateChange;        // Indicator of the last state transition
+    char stateChange;        
 } CELL;
 
 // Function Prototypes

@@ -4,16 +4,10 @@
 void outputDaySZRD(FILE *fp_daySZRD, int day,
                    unsigned long numS, unsigned long numZ,
                    unsigned long numR, unsigned long numD) {
-   
-    if (!fp_daySZRD) {
-        fprintf(stderr, "Error: Invalid file pointer for SZRD data.\n");
-        return;
-    }
+    // Cast unsigned long to int for printing, but keep them as unsigned long
+    fprintf(fp_daySZRD, "%d %d %d %d %d\n", day, (int)numS, (int)numZ, (int)numR, (int)numD);
 
-    fprintf(fp_daySZRD, "%d %lu %lu %lu %lu\n", day, numS, numZ, numR, numD);
-
-    
     #if DEBUG_LEVEL > 0
-    printf("Day %d: S = %lu, Z = %lu, R = %lu, D = %lu\n", day, numS, numZ, numR, numD);
+    printf("Day %d: S = %d, Z = %d, R = %d, D = %d\n", day, (int)numS, (int)numZ, (int)numR, (int)numD);
     #endif
 }
