@@ -28,7 +28,7 @@ void decide_S_to_ZorR(int row, int col, int num_Zombie_Neighbours,
                 future[row][col].counter_I_to_Z = 0;  
                   
             }
-	    if  ((rand() / (double)RAND_MAX) < PROB_S_TO_D) {
+	    if  ((rand() / (double)RAND_MAX) < PROB_S_TO_R) {
                 future[row][col].state = 'R';  
               
                   

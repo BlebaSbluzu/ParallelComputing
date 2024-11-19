@@ -23,16 +23,12 @@ void initialiseWorld(CELL **current, CELL **future,
             current[i][j].state = 'S';     
             current[i][j].counter_I_to_Z = 0;
             current[i][j].counter_R_to_Z = 0;
-            current[i][j].counter_D_to_Empty = 0;
-	    //  current[i][j].age = 0;
             current[i][j].stateChange = ' ';
 
 	    
 	    future[i][j].state = 'S';      
             future[i][j].counter_I_to_Z = 0;
             future[i][j].counter_R_to_Z = 0;
-            future[i][j].counter_D_to_Empty = 0;
-	    //  future[i][j].age = 0;
             future[i][j].stateChange = ' ';
 
 	                if (i == z_row && j == z_col) {

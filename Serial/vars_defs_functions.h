@@ -26,15 +26,14 @@
 
 #define MIN_NUM_S_TO_KILL_Z 3
 
-#define BASE_PROB_Z_TO_D 0.50
+#define BASE_PROB_Z_TO_R 0.50
 // 50% chance with 3 susceptibles/infecteds
-#define EXTRA_PROB_Z_TO_D_PER_EXTRA_S 0.10
+#define EXTRA_PROB_Z_TO_R_PER_EXTRA_S 0.10
 // +10% for each extra susceptible/infected
 
 // Natural Death
-#define PROB_S_TO_R 0.0067
+#define PROB_S_TO_R 0.067
 
-#define PROB_S_TO_D 0.0067 
 #define DAILY_DEATHS_PER_1000 6.7
 
 // Birth Rate
@@ -44,9 +43,8 @@
 #define INFECTED_TO_ZOMBIE_DAYS 2
 
 // Time for dead cell to empty
-#define TIME_D_TO_EMPTY 3
+#define TIME_R_TO_EMPTY 3
 
-#define MIN_TIME_R_TO_Z 1
 #define MAX_TIME_R_TO_Z 3
 
 typedef struct cell {
@@ -66,7 +64,7 @@ void initialiseWorld(CELL **current,
 void outputWorld(int day,
 		 CELL **current);
 
-void outputDaySZRD(FILE *fp_daySZRD, int day,
+void outputDaySZRI(FILE *fp_daySZRI, int day,
 		    unsigned long numS,
 		    unsigned long numZ,
 		    unsigned long numR,
@@ -89,14 +87,14 @@ void decide_S_to_ZorR(int row,
 		      );
 
 
-void decide_S_to_D(int row,
+void decide_S_to_R(int row,
 		   int col,
 		   int num_Zombie_Neighbours,
 		   CELL **current,
 		   CELL **future);
 
 
-void decide_Z_to_D(int row,
+void decide_Z_to_R(int row,
 		   int col,
 		   int num_Susceptible_Neighbours,
 		   CELL **current,
@@ -109,7 +107,7 @@ void decide_R_to_Z(int row,
 		   CELL **future);
 
 
-void decide_D_to_Empty(int row,
+void decide_R_to_Empty(int row,
 		       int col,
 		       CELL **current,
 		       CELL **future);

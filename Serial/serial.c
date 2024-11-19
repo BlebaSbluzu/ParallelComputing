@@ -16,7 +16,7 @@ int main() {
    
     initialiseWorld(current, future, &numS, &numZ);
 
-    FILE *fp_daySZRD = fopen("data/daySZRD.dat", "w");
+    FILE *fp_daySZRI = fopen("data/daySZRI.dat", "w");
 
    
     for (int day = 1; day <= TOTAL_DAYS; day++) {
@@ -40,7 +40,7 @@ int main() {
 		  numI++;
                         break;
                     case 'Z': 
-                        decide_Z_to_D(i, j, susceptibleCount, current, future);
+                        decide_Z_to_R(i, j, susceptibleCount, current, future);
 			numZ++;
                         break;
                     case 'R': 
@@ -51,7 +51,7 @@ int main() {
             }
         }
 
-	outputDaySZRD(fp_daySZRD, day, numS, numZ, numR, numI);
+	outputDaySZRI(fp_daySZRI, day, numS, numZ, numR, numI);
 
       
         
@@ -66,16 +66,13 @@ int main() {
     }
 
 
-    fclose(fp_daySZRD);
+    fclose(fp_daySZRI);
 
     
-    fp_daySZRD = fopen("data/daySZRD.dat", "r");
-    if (!fp_daySZRD) {
-        perror("Failed to reopen daySZRD.dat");
-        return 1;
-    }
+    fp_daySZRI = fopen("data/daySZRI.dat", "r");
 
-    fclose(fp_daySZRD);
+
+    fclose(fp_daySZRI);
 
 
     for (int i = 0; i < ROWS; i++) {

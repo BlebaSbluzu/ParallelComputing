@@ -8,6 +8,6 @@ void outputDaySZRD(FILE *fp_daySZRD, int day,
   fprintf(fp_daySZRD, "%d %d %d %d %d\n", day, (int)numS, (int)numZ, (int)numR, (int)numI);
 
     #if DEBUG_LEVEL > 0
-  printf("Day %d: S = %d, Z = %d, R = %d, D = %d, I = %d\n", day, (int)numS, (int)numZ, (int)numR, (int)numI);
+  printf("Day %d: S = %d, Z = %d, R = %d, I = %d\n", day, (int)numS, (int)numZ, (int)numR, (int)numI);
     #endif
 }

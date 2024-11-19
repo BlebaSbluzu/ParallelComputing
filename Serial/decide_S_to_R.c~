@@ -1,7 +1,7 @@
 #include "vars_defs_functions.h"
 #include <stdlib.h>
 
-void decide_S_to_D(int row, int col, int num_Zombie_Neighbours,
+void decide_S_to_R(int row, int col, int num_Zombie_Neighbours,
                    CELL **current, CELL **future) {
     float probDeath = PROB_S_TO_D;
     if (((float)rand() / RAND_MAX) < probDeath) {
