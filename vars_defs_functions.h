@@ -63,7 +63,7 @@ typedef struct cell {
   char state;
   int counter_I_to_Z;
   int counter_R_to_Z;
-  int counter_D_to_Empty;
+  int counter_R_to_Empty;
   int age;
   char stateChange;
 } CELL;

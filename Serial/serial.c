@@ -47,7 +47,11 @@ int main() {
                         decide_R_to_Z(i, j, current, future);
 			numR++;
                         break;
-                }
+                
+	    case 'E':
+	      decide_E_to_S(i, j, current, future);
+	      break;
+		}
             }
         }
 

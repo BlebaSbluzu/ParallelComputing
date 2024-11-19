@@ -13,7 +13,7 @@
 
 #define ROWS 10
 #define COLS 10
-#define TOTAL_DAYS 20
+#define TOTAL_DAYS 30
 
 #define WORLD_OUTPUT_INTERVAL 1
 
@@ -43,7 +43,7 @@
 #define INFECTED_TO_ZOMBIE_DAYS 2
 
 // Time for dead cell to empty
-#define TIME_R_TO_EMPTY 3
+#define TIME_R_TO_EMPTY 2
 
 #define MAX_TIME_R_TO_Z 3
 
@@ -111,5 +111,11 @@ void decide_R_to_Empty(int row,
 		       int col,
 		       CELL **current,
 		       CELL **future);
+
+
+void decide_E_to_S(int row,
+		       int col,
+		       CELL **current,
+		   CELL **future);
 
 #endif

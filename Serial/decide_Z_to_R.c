@@ -9,8 +9,10 @@ void decide_Z_to_R(int row, int col, int num_Susceptible_Neighbours,
         future[row][col].state = 'R';
         future[row][col].counter_R_to_Z = 0;
 
-    } else {
+    
+    }
+ else {
         future[row][col] = current[row][col];
-
+       
     }
 }

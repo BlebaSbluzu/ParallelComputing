@@ -1,5 +1,5 @@
 #include "vars_defs_functions.h"
-#include <stdlib.h> // For rand()
+#include <stdlib.h> 
 
 void decide_R_to_Z(int row, int col, CELL **current, CELL **future) {
     
