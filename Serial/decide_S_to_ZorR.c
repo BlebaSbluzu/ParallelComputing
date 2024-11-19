@@ -1,21 +1,19 @@
 #include "vars_defs_functions.h"
 #include <stdlib.h>
 
-void decide_S_to_ZorR(int row, int col, int num_Zombie_Neighbours, unsigned long *ptr_to_numS,
-                       unsigned long *ptr_to_numZ, unsigned long *ptr_to_numR,
+void decide_S_to_ZorR(int row, int col, int num_Zombie_Neighbours,
                        CELL **current, CELL **future) {
     
-    if (current[row][col].state == 'I') {  // Infected
-        current[row][col].counter_I_to_Z++;  // Increment the infection counter
+    if (current[row][col].state == 'I') {  
+        current[row][col].counter_I_to_Z++; 
 
-        future[row][col].counter_I_to_Z = current[row][col].counter_I_to_Z;  // Ensure future is also updated
+        future[row][col].counter_I_to_Z = current[row][col].counter_I_to_Z; 
       
-        // Transition to Zombie if the counter exceeds the threshold
+       
         if (current[row][col].counter_I_to_Z >= INFECTED_TO_ZOMBIE_DAYS) {
         
             future[row][col].state = 'Z'; 
-            (*ptr_to_numZ)++;              
-            (*ptr_to_numS)--;               
+                     
          
             future[row][col].counter_I_to_Z = 0;  
         }
@@ -28,8 +26,15 @@ void decide_S_to_ZorR(int row, int col, int num_Zombie_Neighbours, unsigned long
             if ((rand() / (double)RAND_MAX) < prob_of_infection) {
                 future[row][col].state = 'I';  
                 future[row][col].counter_I_to_Z = 0;  
-                (*ptr_to_numS)--;             
+                  
             }
+	    if  ((rand() / (double)RAND_MAX) < PROB_S_TO_D) {
+                future[row][col].state = 'R';  
+              
+                  
+            }
+
+	    
         }
     }
 }

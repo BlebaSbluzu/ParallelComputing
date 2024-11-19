@@ -8,7 +8,7 @@ void initialiseWorld(CELL **current, CELL **future,
 
     
 
-     srand(time(NULL));
+     srand(time(NULL));1
 
      int z_row = rand() % ROWS;
      int z_col = rand() % COLS;
@@ -24,7 +24,7 @@ void initialiseWorld(CELL **current, CELL **future,
             current[i][j].counter_I_to_Z = 0;
             current[i][j].counter_R_to_Z = 0;
             current[i][j].counter_D_to_Empty = 0;
-	    //  current[i][j].age = 0;
+            current[i][j].age = 0;
             current[i][j].stateChange = ' ';
 
 	    
@@ -32,7 +32,7 @@ void initialiseWorld(CELL **current, CELL **future,
             future[i][j].counter_I_to_Z = 0;
             future[i][j].counter_R_to_Z = 0;
             future[i][j].counter_D_to_Empty = 0;
-	    //  future[i][j].age = 0;
+            future[i][j].age = 0;
             future[i][j].stateChange = ' ';
 
 	                if (i == z_row && j == z_col) {
@@ -41,11 +41,8 @@ void initialiseWorld(CELL **current, CELL **future,
             } else {
                 (*ptr_to_numS)++;
             }
-		
         }
-	
     }
-     //	printf("num Z = %d and num S = %d",(int)*ptr_to_numZ,(int)*ptr_to_numS);
 }
      
 
