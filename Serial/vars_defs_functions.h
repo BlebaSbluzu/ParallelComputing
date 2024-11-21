@@ -86,7 +86,7 @@ void decide_S_to_ZorR(int row,
 		      
 		      );
 
-
+ 
 void decide_S_to_R(int row,
 		   int col,
 		   int num_Zombie_Neighbours,
@@ -101,16 +101,11 @@ void decide_Z_to_R(int row,
 		   CELL **future);
 
 
-void decide_R_to_Z(int row,
+void decide_R_to_ZorE(int row,
 		   int col,
 		   CELL **current,
 		   CELL **future);
 
-
-void decide_R_to_Empty(int row,
-		       int col,
-		       CELL **current,
-		       CELL **future);
 
 
 void decide_E_to_S(int row,

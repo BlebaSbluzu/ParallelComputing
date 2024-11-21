@@ -1,7 +1,8 @@
 #include "vars_defs_functions.h"
 #include <stdlib.h> 
 
-void decide_R_to_Z(int row, int col, CELL **current, CELL **future) {
+void decide_R_to_ZorE
+(int row, int col, CELL **current, CELL **future) {
     
     if (current[row][col].counter_R_to_Z < TIME_R_TO_EMPTY) { 
         if ((rand() / (double)RAND_MAX) <= BASE_PROB_S_TO_Z) { 

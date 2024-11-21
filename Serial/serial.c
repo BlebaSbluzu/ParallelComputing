@@ -44,7 +44,7 @@ int main() {
 			numZ++;
                         break;
                     case 'R': 
-                        decide_R_to_Z(i, j, current, future);
+                        decide_R_to_ZorE(i, j, current, future);
 			numR++;
                         break;
                 

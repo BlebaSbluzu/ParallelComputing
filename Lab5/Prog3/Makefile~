@@ -1,0 +1,4 @@
+main_hello: main_hello.c child_hello.c child_hello.o
+	gcc main_hello.c child_hello.o -lpthread -o main_hello
+child_hello.o: child_hello.c
+	gcc -c child_hello.c

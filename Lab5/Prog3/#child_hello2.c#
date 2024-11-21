@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "myheader.h"
+
+void *child_hello2(void *rank){
+long my_rank = (long) rank;
+ 
+printf("Hello from child thread %ld of a total of %d child threads\n", my_rank, thread_count);
+}
